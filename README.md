@@ -18,7 +18,7 @@ First, create a new general-purpose storage account to use for this tutorial.
 *  Set `Replication` to **Locally Redundant storage (LRS)**.
 *  Set `Storage service encryption` to **Disabled**.
 *  Set `Secure transfer required` to **Disabled**.
-*  Select your subscirption. 
+*  Select your subscription. 
 *  For `resource group`, create a new one and give it a unique name. 
 *  Select the `Location` to use for your storage account.
 *  Check **Pin to dashboard** and click **Create** to create your storage account. 
