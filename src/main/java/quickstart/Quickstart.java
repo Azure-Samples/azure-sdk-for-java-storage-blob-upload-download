@@ -127,15 +127,15 @@ public class Quickstart {
             final ServiceURL serviceURL = new ServiceURL(new URL("https://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
-            containerURL = serviceURL.createContainerURL("bigdata");
+            containerURL = serviceURL.createContainerURL("quickstart");
             try {
                 containerURL.create(null, null).blockingGet();
-                System.out.println("Created bigdata container");
+                System.out.println("Created quickstart container");
             } catch (RestException e) {
                 if (e.response().statusCode() != 409) {
                     throw e;
                 } else {
-                    System.out.println("bigdata container already exists");
+                    System.out.println("quickstart container already exists");
                 }
             }
 
