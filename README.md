@@ -23,7 +23,7 @@ First, create a new general-purpose storage account to use for this tutorial.
 *  Select the `Location` to use for your storage account.
 *  Check **Pin to dashboard** and click **Create** to create your storage account. 
 
-After your storage account is created, it is pinned to the dashboard. Click on it to open it. Under SETTINGS, click **Access keys**. Select a key and copy the CONNECTION STRING to the clipboard, then paste it into Notepad for later use.
+After your storage account is created, it is pinned to the dashboard. Click on it to open it. Under SETTINGS, click **Access keys**. Select a key and copy the **key1** to the clipboard, then paste it into Notepad for later use.
 
 ### Set credentials in environment variables 
 
