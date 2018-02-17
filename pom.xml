@@ -24,6 +24,16 @@
           <compilerArgument>-Xlint:unchecked</compilerArgument>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <mainClass>quickstart.Quickstart</mainClass>
+        </configuration>
+      </plugin>
+      
     </plugins>
   </build>
 
