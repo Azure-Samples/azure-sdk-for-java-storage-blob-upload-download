@@ -40,8 +40,8 @@
   <dependencies>
     <dependency>
       <groupId>com.github.azure</groupId>
-      <artifactId>azure-storage-java-async</artifactId>
-      <version>publicPreview-SNAPSHOT</version>
+      <artifactId>azure-storage-java</artifactId>
+      <version>New-Storage-SDK-V10-Preview-dev</version>
     </dependency>
   </dependencies>
 
