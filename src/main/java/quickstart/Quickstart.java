@@ -1,4 +1,3 @@
-package quickstart;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,13 +22,16 @@ import com.microsoft.azure.storage.blob.ServiceURL;
 import com.microsoft.azure.storage.blob.SharedKeyCredentials;
 import com.microsoft.azure.storage.blob.StorageURL;
 import com.microsoft.azure.storage.models.Blob;
+import com.microsoft.azure.storage.models.Container;
 import com.microsoft.azure.storage.models.ListBlobsResponse;
+import com.microsoft.azure.storage.models.ListContainersResponse;
 import com.microsoft.rest.v2.RestException;
 import com.microsoft.rest.v2.util.FlowableUtil;
+import com.microsoft.azure.storage.blob.*;
 
 import io.reactivex.Flowable;
 
-public class Quickstart {
+public class Test {
     static File createTempFile() {
         // Here we are creating a temporary file to use for download and upload to Blob storage
         File sampleFile = null;
@@ -88,6 +90,30 @@ public class Quickstart {
                 res.body().nextMarker() != null ? listAllBlobs(url, res.body().nextMarker(), options) : Flowable.empty()));
     }
 
+    
+    
+    static void listContainers(ServiceURL url) {
+        // Angshuman Add some comments.... 
+    	
+    	ListContainersOptions options = new ListContainersOptions(null,null,10);
+    	listAllContainers(url, null, options)
+        .subscribe(
+            res -> {
+                System.out.println("Got some containers:");
+                for (Container container : res.containers()) {
+                    System.out.println(">> Conatiner name: " + container.name());
+                }
+            },
+            err -> System.err.println("An error occurred: " + err.getMessage()),
+            () -> System.out.println("Finished listing all blobs."));
+    }
+
+    private static Flowable<ListContainersResponse> listAllContainers(ServiceURL url, String marker, ListContainersOptions options) {
+        return url.listContainers(marker, options) // calling ContainerURL.listBlobs to retrieve the next 100 blobs with the nextMarker
+        .flatMapPublisher(res -> Flowable.just(res.body()).concatWith( // this will repeat until nextMarker is null
+                res.body().nextMarker() != null ? listAllContainers(url, res.body().nextMarker(), options) : Flowable.empty()));
+    }
+
     static void deleteBlob(BlockBlobURL blobURL) {
         // Delete the blob
         blobURL.delete(null, null)
@@ -119,15 +145,31 @@ public class Quickstart {
 
         try {
             // Retrieve the credentials and initialize SharedKeyCredentials    
-            String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
-            String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
-
+            //String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
+            //String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
+            
+            //ZRS Storage Account
+            //String accountName = "testfrancezrs";
+            //String accountKey = "1sF6C6Uw0z+j1l9qIbm7c9ls4JAmRg3kgD0W/9uPtP8ZJtExDt4sAtSSvEXuTrQ3z3BddAUdyDe9uW/Y5mgnww==";
+            
+            // Limitless Storage Account
+            
+            String accountName = "angshutestlimitless";
+            String accountKey = "5SmlSjhDnrR3tpvXWYsELCrqSx1Ia0sE1pCby5EN0h3KpEsNz4ZWKR+evXG6DcqRP0fy+a3Xa64LHBDxI0NYaA==";
+                  
+            
+            
             // Create a ServiceURL to call the Blob service. We will also use this to construct the ContainerURL
             SharedKeyCredentials creds = new SharedKeyCredentials(accountName, accountKey);
             final ServiceURL serviceURL = new ServiceURL(new URL("https://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
-            containerURL = serviceURL.createContainerURL("quickstart");
+           // containerURL = serviceURL.createContainerURL("quickstart");
+            
+            
+            //Limitless Container 
+            containerURL = serviceURL.createContainerURL("uploadvm4");
+            
             try {
                 containerURL.create(null, null).blockingGet();
                 System.out.println("Created quickstart container");
@@ -144,7 +186,7 @@ public class Quickstart {
 
             // Listening for commands from the console
             System.out.println("Enter a command");
-            System.out.println("(P)utBlob | (L)istBlobs | (G)etBlob | (D)eleteBlobs | (E)xitSample");
+            System.out.println("(P)utBlob |(C)ontainerList |(L)istBlobs | (G)etBlob | (D)eleteBlobs | (E)xitSample");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
@@ -156,6 +198,10 @@ public class Quickstart {
                     case "P":
                         System.out.println("Uploading the sample file into the container: " + containerURL );
                         uploadFile(blobURL, sampleFile);
+                        break;
+                    case "C":
+                        System.out.println("List all containers exiting!");
+                        listContainers(serviceURL );
                         break;
                     case "L":
                         System.out.println("Listing blobs in the container: " + containerURL );
@@ -174,6 +220,7 @@ public class Quickstart {
                         containerURL.delete(null).blockingGet();
                         System.exit(0);
                         break;
+                    
                     default:
                         break;
                 }
@@ -191,3 +238,4 @@ public class Quickstart {
     }
 
 }
+
