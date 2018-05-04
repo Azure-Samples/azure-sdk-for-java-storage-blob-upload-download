@@ -55,7 +55,6 @@ public class Quickstart {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return sampleFile;
     }
 
