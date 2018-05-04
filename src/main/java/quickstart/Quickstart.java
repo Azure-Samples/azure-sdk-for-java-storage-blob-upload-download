@@ -13,7 +13,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.StandardOpenOption;
 import java.security.InvalidKeyException;
 
@@ -32,15 +31,8 @@ import com.microsoft.azure.storage.blob.models.ContainersListBlobFlatSegmentResp
 import com.microsoft.rest.v2.RestException;
 import com.microsoft.rest.v2.util.FlowableUtil;
 
-
-import io.reactivex.Flowable;
-
 import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.BiConsumer;
-import io.reactivex.functions.Function;
-
+import io.reactivex.Flowable;
 
 public class Quickstart {
     static File createTempFile() {
@@ -79,9 +71,8 @@ public class Quickstart {
             )
 
             /*
-            This will synchronize all the above operations. This is strongly discouraged for use in production as
-            it eliminates the benefits of asynchronous IO. We use it here to enable the sample to complete and
-            demonstrate its effectiveness.
+            This will synchronize all the above operations. Doing this eliminates the benefits of asynchronous IO.
+            We use it here to enable the sample to complete and demonstrate its effectiveness.
             */
             .blockingGet();
     }
@@ -166,6 +157,7 @@ public class Quickstart {
 
             // Create a ServiceURL to call the Blob service. We will also use this to construct the ContainerURL
             SharedKeyCredentials creds = new SharedKeyCredentials(accountName, accountKey);
+            // We are using a default pipeline here, you can learn more about it at https://github.com/Azure/azure-storage-java/wiki/Azure-Storage-Java-V10-Overview
             final ServiceURL serviceURL = new ServiceURL(new URL("https://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
