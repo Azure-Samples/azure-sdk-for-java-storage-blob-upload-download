@@ -13,7 +13,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.StandardOpenOption;
 import java.security.InvalidKeyException;
 
@@ -32,59 +31,40 @@ import com.microsoft.azure.storage.blob.models.ContainersListBlobFlatSegmentResp
 import com.microsoft.rest.v2.RestException;
 import com.microsoft.rest.v2.util.FlowableUtil;
 
-
+import io.reactivex.*;
 import io.reactivex.Flowable;
 
-import io.reactivex.*;
-import io.reactivex.Observable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.BiConsumer;
-import io.reactivex.functions.Function;
-
-
 public class Quickstart {
-    static File createTempFile() {
+    static File createTempFile() throws IOException {
         // Here we are creating a temporary file to use for download and upload to Blob storage
         File sampleFile = null;
-        try {
-            sampleFile = File.createTempFile("sampleFile", ".txt");
-            System.out.println(">> Creating a sample file at: " + sampleFile.toString());
-            Writer output = new BufferedWriter(new FileWriter(sampleFile));
-            output.write("Hello Azure!");
-            output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sampleFile = File.createTempFile("sampleFile", ".txt");
+        System.out.println(">> Creating a sample file at: " + sampleFile.toString());
+        Writer output = new BufferedWriter(new FileWriter(sampleFile));
+        output.write("Hello Azure!");
+        output.close();
 
         return sampleFile;
     }
 
-    static void uploadFile(BlockBlobURL blob, File sourceFile) {
-        try {
-            // Read the file asynchronously into a Flowable
+    static void uploadFile(BlockBlobURL blob, File sourceFile) throws IOException {
             FileChannel fileChannel = FileChannel.open(sourceFile.toPath());
             //Uploading file to the blobURL
-            TransferManager.uploadFileToBlockBlob(fileChannel, blob,(int) sourceFile.length(), null).blockingGet();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            TransferManager.uploadFileToBlockBlob(fileChannel, blob,(int) sourceFile.length(), null).subscribe(response-> {
+                System.out.println("Completed request.");
+            });
     }
 
     static void listBlobs(ContainerURL containerURL) {
         // Each ContainerURL.listBlobs call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
         // To list all Blobs, we are creating a helper static method called listAllBlobs
-        ListBlobsOptions options = new ListBlobsOptions(null, null, 1);
+        ListBlobsOptions options = new ListBlobsOptions(null, null, 10);
 
         containerURL.listBlobsFlatSegment(null, options).flatMap(containersListBlobFlatSegmentResponse -> 
             listAllBlobs(containerURL, containersListBlobFlatSegmentResponse)            
-            )
-
-            /*
-            This will synchronize all the above operations. This is strongly discouraged for use in production as
-            it eliminates the benefits of asynchronous IO. We use it here to enable the sample to complete and
-            demonstrate its effectiveness.
-            */
-            .blockingGet();
+            ).subscribe(response-> {
+                System.out.println("Completed request.");
+            });
     }
 
     private static Single <ContainersListBlobFlatSegmentResponse> listAllBlobs(ContainerURL url, ContainersListBlobFlatSegmentResponse response) {                
@@ -131,20 +111,19 @@ public class Quickstart {
         .subscribe(
             response -> System.out.println(">> Blob deleted: " + blobURL),
             error -> System.out.println(">> An error encountered during deleteBlob: " + error.getMessage()));
-
     }
 
     static void getBlob(BlockBlobURL blobURL, File sourceFile) {
         try {
             // Get the blob
-            // Since the blob is small, we'll read the entire blob into memory asynchronously
             // com.microsoft.rest.v2.util.FlowableUtil is a static class that contains helpers to work with Flowable
             blobURL.download(new BlobRange(0, Long.MAX_VALUE), null, false)
                     .flatMapCompletable(response -> {
                         AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get(sourceFile.getPath()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
                         return FlowableUtil.writeFile(response.body(), channel);
                     })
-                    .blockingAwait();
+                    //.blockingAwait();
+                    .subscribe();
             System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath());            
         } catch (Exception ex){
 
@@ -156,31 +135,34 @@ public class Quickstart {
         ContainerURL containerURL;
 
         // Creating a sample file to use in the sample
-        File sampleFile = createTempFile();
-
+        File sampleFile = null;
 
         try {
+            sampleFile = createTempFile();
+
             File downloadedFile = File.createTempFile("downloadedFile", ".txt");
             // Retrieve the credentials and initialize SharedKeyCredentials    
-            String accountName = System.getenv("ACCOUNT_NAME");
-            String accountKey = System.getenv("ACCOUNT_KEY");
+            String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
+            String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
 
             // Create a ServiceURL to call the Blob service. We will also use this to construct the ContainerURL
             SharedKeyCredentials creds = new SharedKeyCredentials(accountName, accountKey);
+            // We are using a default pipeline here, you can learn more about it at https://github.com/Azure/azure-storage-java/wiki/Azure-Storage-Java-V10-Overview
             final ServiceURL serviceURL = new ServiceURL(new URL("https://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
             containerURL = serviceURL.createContainerURL("quickstart");
-            try {
-                containerURL.create(null, null).blockingGet();
-                System.out.println("Created quickstart container");
-            } catch (RestException e) {
-                if (e.response().statusCode() != 409) {
-                    throw e;
-                } else {
-                    System.out.println("quickstart container already exists");
-                }
-            }
+            containerURL.create(null, null).subscribe(
+                response-> System.out.println("Sending request to create container..."),
+                e -> {
+                    if (e instanceof RestException && ((RestException)e).response().statusCode() != 409) {
+                        throw (Exception)e;
+                    } else {
+                        System.out.println("quickstart container already exists");
+                    }
+                    System.out.println("Already created");
+                }); 
+            System.out.println("Sent request to create quickstart container");
 
             // Create a BlockBlobURL to run operations on Blobs
             final BlockBlobURL blobURL = containerURL.createBlockBlobURL("SampleBlob.txt");
@@ -223,7 +205,6 @@ public class Quickstart {
                         break;
                 }
             }
-
         } catch (InvalidKeyException e) {
             System.out.println("Invalid Storage account name/key provided");
         } catch (MalformedURLException e) {
@@ -232,6 +213,7 @@ public class Quickstart {
             System.out.println("Service error returned: " + e.response().statusCode() );
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 }
