@@ -27,6 +27,7 @@ import com.microsoft.azure.storage.blob.SharedKeyCredentials;
 import com.microsoft.azure.storage.blob.StorageURL;
 import com.microsoft.azure.storage.blob.TransferManager;
 import com.microsoft.azure.storage.blob.models.Blob;
+import com.microsoft.azure.storage.blob.models.ContainersCreateResponse;
 import com.microsoft.azure.storage.blob.models.ContainersListBlobFlatSegmentResponse;
 import com.microsoft.rest.v2.RestException;
 import com.microsoft.rest.v2.util.FlowableUtil;
@@ -138,7 +139,7 @@ public class Quickstart {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws java.lang.Exception{
         ContainerURL containerURL;
 
         // Creating a sample file to use in the sample
@@ -158,18 +159,19 @@ public class Quickstart {
             final ServiceURL serviceURL = new ServiceURL(new URL("http://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
+            // If container exists, we'll catch and continue
             containerURL = serviceURL.createContainerURL("quickstart");
-            containerURL.create(null, null).subscribe(
-                response-> System.out.println("Sending request to create container..."),
-                e -> {
-                    if (e instanceof RestException && ((RestException)e).response().statusCode() != 409) {
-                        throw (Exception)e;
-                    } else {
-                        System.out.println("quickstart container already exists");
-                    }
-                    System.out.println("Already created");
-                }); 
-            System.out.println("Sent request to create quickstart container");
+
+            try {
+                ContainersCreateResponse response = containerURL.create(null, null).blockingGet();
+                System.out.println("Container Create Response was " + response.statusCode());
+            } catch (RestException e){
+                if (e instanceof RestException && ((RestException)e).response().statusCode() != 409) {
+                    throw e;
+                } else {
+                    System.out.println("quickstart container already exists, resuming...");
+                }
+            }
 
             // Create a BlockBlobURL to run operations on Blobs
             final BlockBlobURL blobURL = containerURL.createBlockBlobURL("SampleBlob.txt");
