@@ -36,6 +36,7 @@ import io.reactivex.Flowable;
 
 public class Quickstart {
     static File createTempFile() throws IOException {
+    	
         // Here we are creating a temporary file to use for download and upload to Blob storage
         File sampleFile = null;
         sampleFile = File.createTempFile("sampleFile", ".txt");
@@ -48,22 +49,29 @@ public class Quickstart {
     }
 
     static void uploadFile(BlockBlobURL blob, File sourceFile) throws IOException {
+    	
             FileChannel fileChannel = FileChannel.open(sourceFile.toPath());
-            //Uploading file to the blobURL
-            TransferManager.uploadFileToBlockBlob(fileChannel, blob,(int) sourceFile.length(), null).subscribe(response-> {
-                System.out.println("Completed request.");
+            
+            // Uploading a file to the blobURL using the high-level methods available in TransferManager class
+            // Alternatively call the PutBlob/PutBlock low-level methods from BlockBlobURL type
+            TransferManager.uploadFileToBlockBlob(fileChannel, blob, 8*1024*1024, null)
+            .subscribe(response-> {
+                System.out.println("Completed upload request.");
+                System.out.println(response.response().statusCode());
             });
     }
 
     static void listBlobs(ContainerURL containerURL) {
-        // Each ContainerURL.listBlobs call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
-        // To list all Blobs, we are creating a helper static method called listAllBlobs
+        // Each ContainerURL.listBlobsFlatSegment call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
+        // To list all Blobs, we are creating a helper static method called listAllBlobs, 
+    	// and calling it after the initial listBlobsFlatSegment call
         ListBlobsOptions options = new ListBlobsOptions(null, null, 10);
 
         containerURL.listBlobsFlatSegment(null, options).flatMap(containersListBlobFlatSegmentResponse -> 
             listAllBlobs(containerURL, containersListBlobFlatSegmentResponse)            
             ).subscribe(response-> {
-                System.out.println("Completed request.");
+                System.out.println("Completed list blobs request.");
+                System.out.println(response.statusCode());
             });
     }
 
@@ -79,7 +87,7 @@ public class Quickstart {
             }
         }
         else {
-            System.out.println("There are no blobs to list off.");
+            System.out.println("There are no more blobs to list off.");
         }
     
         // If there is not another segment, return this response as the final response.
@@ -115,16 +123,15 @@ public class Quickstart {
 
     static void getBlob(BlockBlobURL blobURL, File sourceFile) {
         try {
-            // Get the blob
+            // Get the blob using the low-level download method in BlockBlobURL type
             // com.microsoft.rest.v2.util.FlowableUtil is a static class that contains helpers to work with Flowable
             blobURL.download(new BlobRange(0, Long.MAX_VALUE), null, false)
                     .flatMapCompletable(response -> {
                         AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get(sourceFile.getPath()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
                         return FlowableUtil.writeFile(response.body(), channel);
-                    })
-                    //.blockingAwait();
+                    }).doOnComplete(()-> System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath()))
+                    // To call it synchronously add .blockingAwait()
                     .subscribe();
-            System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath());            
         } catch (Exception ex){
 
             System.out.println(ex.toString());
@@ -148,7 +155,7 @@ public class Quickstart {
             // Create a ServiceURL to call the Blob service. We will also use this to construct the ContainerURL
             SharedKeyCredentials creds = new SharedKeyCredentials(accountName, accountKey);
             // We are using a default pipeline here, you can learn more about it at https://github.com/Azure/azure-storage-java/wiki/Azure-Storage-Java-V10-Overview
-            final ServiceURL serviceURL = new ServiceURL(new URL("https://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
+            final ServiceURL serviceURL = new ServiceURL(new URL("http://" + accountName + ".blob.core.windows.net"), StorageURL.createPipeline(creds, new PipelineOptions()));
 
             // Let's create a container using a blocking call to Azure Storage
             containerURL = serviceURL.createContainerURL("quickstart");

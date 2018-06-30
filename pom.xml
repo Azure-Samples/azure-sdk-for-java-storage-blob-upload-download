@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>Azure-Storage-SDK-Java-V2</groupId>
-  <artifactId>Azure-Storage-SDK-Java-V2</artifactId>
-  <version>10.0.0-Preview</version>
+  <groupId>Azure-Storage-SDK-V10-Java</groupId>
+  <artifactId>QuickStart</artifactId>
+  <version>0.1</version>
   <repositories>
     <repository>
       <id>commicrosoftazure-2334</id>
@@ -36,7 +36,6 @@
       </plugin>
       
     </plugins>
-    <sourceDirectory>src/main/java/quickstart</sourceDirectory>
   </build>
 
   <dependencies>
