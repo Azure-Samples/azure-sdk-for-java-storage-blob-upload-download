@@ -42,8 +42,8 @@ setx AZURE_STORAGE_ACCESS_KEY "<youraccountkey>"
 At this point, you can run this application. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end. 
 
 ## Resources
-* [Azure Storage SDK for Java V2 - Source Code](https://github.com/azure/azure-storage-java-async)
-* [API Reference](https://azure.github.io/azure-storage-java-async)
+* [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java/tree/New-Storage-SDK-V10-Preview)
+* [API Reference](https://docs.microsoft.com/en-us/java/api/storage/client?view=azure-java-preview)
 
 # Contributing
 
