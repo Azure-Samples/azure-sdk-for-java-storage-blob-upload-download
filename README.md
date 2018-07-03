@@ -1,4 +1,4 @@
-# Quick Start with Azure Storage SDK for Java V2
+# Quick Start with Azure Storage SDK V10 for Java
 ## How to run this project
 
 ### Prerequisites
