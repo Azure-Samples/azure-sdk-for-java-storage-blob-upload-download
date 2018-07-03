@@ -69,8 +69,8 @@ public class Quickstart {
         ListBlobsOptions options = new ListBlobsOptions(null, null, 10);
 
         containerURL.listBlobsFlatSegment(null, options).flatMap(containersListBlobFlatSegmentResponse -> 
-            listAllBlobs(containerURL, containersListBlobFlatSegmentResponse)            
-            ).subscribe(response-> {
+            listAllBlobs(containerURL, containersListBlobFlatSegmentResponse))          
+            .subscribe(response-> {
                 System.out.println("Completed list blobs request.");
                 System.out.println(response.statusCode());
             });
@@ -149,6 +149,7 @@ public class Quickstart {
             sampleFile = createTempFile();
 
             File downloadedFile = File.createTempFile("downloadedFile", ".txt");
+            
             // Retrieve the credentials and initialize SharedKeyCredentials    
             String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
             String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
