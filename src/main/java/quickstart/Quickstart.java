@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
@@ -20,15 +19,14 @@ import com.microsoft.azure.storage.blob.BlobRange;
 import com.microsoft.azure.storage.blob.BlockBlobURL;
 import com.microsoft.azure.storage.blob.ContainerURL;
 import com.microsoft.azure.storage.blob.ListBlobsOptions;
-import com.microsoft.azure.storage.blob.ICredentials;
 import com.microsoft.azure.storage.blob.PipelineOptions;
 import com.microsoft.azure.storage.blob.ServiceURL;
 import com.microsoft.azure.storage.blob.SharedKeyCredentials;
 import com.microsoft.azure.storage.blob.StorageURL;
 import com.microsoft.azure.storage.blob.TransferManager;
-import com.microsoft.azure.storage.blob.models.Blob;
-import com.microsoft.azure.storage.blob.models.ContainersCreateResponse;
-import com.microsoft.azure.storage.blob.models.ContainersListBlobFlatSegmentResponse;
+import com.microsoft.azure.storage.blob.models.BlobItem;
+import com.microsoft.azure.storage.blob.models.ContainerCreateResponse;
+import com.microsoft.azure.storage.blob.models.ContainerListBlobFlatSegmentResponse;
 import com.microsoft.rest.v2.RestException;
 import com.microsoft.rest.v2.util.FlowableUtil;
 
@@ -37,7 +35,7 @@ import io.reactivex.Flowable;
 
 public class Quickstart {
     static File createTempFile() throws IOException {
-    	
+
         // Here we are creating a temporary file to use for download and upload to Blob storage
         File sampleFile = null;
         sampleFile = File.createTempFile("sampleFile", ".txt");
@@ -50,9 +48,9 @@ public class Quickstart {
     }
 
     static void uploadFile(BlockBlobURL blob, File sourceFile) throws IOException {
-    	
+
             FileChannel fileChannel = FileChannel.open(sourceFile.toPath());
-            
+
             // Uploading a file to the blobURL using the high-level methods available in TransferManager class
             // Alternatively call the PutBlob/PutBlock low-level methods from BlockBlobURL type
             TransferManager.uploadFileToBlockBlob(fileChannel, blob, 8*1024*1024, null)
@@ -64,22 +62,22 @@ public class Quickstart {
 
     static void listBlobs(ContainerURL containerURL) {
         // Each ContainerURL.listBlobsFlatSegment call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
-        // To list all Blobs, we are creating a helper static method called listAllBlobs, 
+        // To list all Blobs, we are creating a helper static method called listAllBlobs,
     	// and calling it after the initial listBlobsFlatSegment call
         ListBlobsOptions options = new ListBlobsOptions(null, null, 10);
 
-        containerURL.listBlobsFlatSegment(null, options).flatMap(containersListBlobFlatSegmentResponse -> 
-            listAllBlobs(containerURL, containersListBlobFlatSegmentResponse))          
+        containerURL.listBlobsFlatSegment(null, options).flatMap(containerListBlobFlatSegmentResponse ->
+            listAllBlobs(containerURL, containerListBlobFlatSegmentResponse))
             .subscribe(response-> {
                 System.out.println("Completed list blobs request.");
                 System.out.println(response.statusCode());
             });
     }
 
-    private static Single <ContainersListBlobFlatSegmentResponse> listAllBlobs(ContainerURL url, ContainersListBlobFlatSegmentResponse response) {                
+    private static Single <ContainerListBlobFlatSegmentResponse> listAllBlobs(ContainerURL url, ContainerListBlobFlatSegmentResponse response) {
         // Process the blobs returned in this result segment (if the segment is empty, blobs() will be null.
-        if (response.body().blobs() != null) {
-            for (Blob b : response.body().blobs().blob()) {
+        if (response.body().segment() != null) {
+            for (BlobItem b : response.body().segment().blobItems()) {
                 String output = "Blob name: " + b.name();
                 if (b.snapshot() != null) {
                     output += ", Snapshot: " + b.snapshot();
@@ -90,7 +88,7 @@ public class Quickstart {
         else {
             System.out.println("There are no more blobs to list off.");
         }
-    
+
         // If there is not another segment, return this response as the final response.
         if (response.body().nextMarker() == null) {
             return Single.just(response);
@@ -99,14 +97,14 @@ public class Quickstart {
             IMPORTANT: ListBlobsFlatSegment returns the start of the next segment; you MUST use this to get the next
             segment (after processing the current result segment
             */
-            
+
             String nextMarker = response.body().nextMarker();
 
             /*
             The presence of the marker indicates that there are more blobs to list, so we make another call to
             listBlobsFlatSegment and pass the result through this helper function.
             */
-            
+
             return url.listBlobsFlatSegment(nextMarker, new ListBlobsOptions(null, null,
                     1))
                     .flatMap(containersListBlobFlatSegmentResponse ->
@@ -149,8 +147,8 @@ public class Quickstart {
             sampleFile = createTempFile();
 
             File downloadedFile = File.createTempFile("downloadedFile", ".txt");
-            
-            // Retrieve the credentials and initialize SharedKeyCredentials    
+
+            // Retrieve the credentials and initialize SharedKeyCredentials
             String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
             String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
 
@@ -164,7 +162,7 @@ public class Quickstart {
             containerURL = serviceURL.createContainerURL("quickstart");
 
             try {
-                ContainersCreateResponse response = containerURL.create(null, null).blockingGet();
+                ContainerCreateResponse response = containerURL.create(null, null).blockingGet();
                 System.out.println("Container Create Response was " + response.statusCode());
             } catch (RestException e){
                 if (e instanceof RestException && ((RestException)e).response().statusCode() != 409) {

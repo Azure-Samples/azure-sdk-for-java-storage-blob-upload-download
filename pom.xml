@@ -42,7 +42,7 @@
     <dependency>
       <groupId>com.microsoft.azure</groupId>
       <artifactId>azure-storage-blob</artifactId>
-      <version>10.0.1-Preview</version>
+      <version>10.0.3-Preview</version>
     </dependency>
   </dependencies>
 </project>
