@@ -46,7 +46,7 @@ mvn compile exec:java
 ```
 
 ## Resources
-* [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java/tree/New-Storage-SDK-V10-Preview)
+* [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java/tree/vNext)
 * [API Reference](https://docs.microsoft.com/en-us/java/api/storage/client?view=azure-java-preview)
 
 # Contributing

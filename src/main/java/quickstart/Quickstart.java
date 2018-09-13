@@ -49,7 +49,7 @@ public class Quickstart {
 
     static void uploadFile(BlockBlobURL blob, File sourceFile) throws IOException {
 
-            FileChannel fileChannel = FileChannel.open(sourceFile.toPath());
+            AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(sourceFile.toPath());
 
             // Uploading a file to the blobURL using the high-level methods available in TransferManager class
             // Alternatively call the PutBlob/PutBlock low-level methods from BlockBlobURL type
@@ -64,9 +64,10 @@ public class Quickstart {
         // Each ContainerURL.listBlobsFlatSegment call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
         // To list all Blobs, we are creating a helper static method called listAllBlobs,
     	// and calling it after the initial listBlobsFlatSegment call
-        ListBlobsOptions options = new ListBlobsOptions(null, null, 10);
+        ListBlobsOptions options = new ListBlobsOptions();
+        options.withMaxResults(10);
 
-        containerURL.listBlobsFlatSegment(null, options).flatMap(containerListBlobFlatSegmentResponse ->
+        containerURL.listBlobsFlatSegment(null, options, null).flatMap(containerListBlobFlatSegmentResponse ->
             listAllBlobs(containerURL, containerListBlobFlatSegmentResponse))
             .subscribe(response-> {
                 System.out.println("Completed list blobs request.");
@@ -105,8 +106,7 @@ public class Quickstart {
             listBlobsFlatSegment and pass the result through this helper function.
             */
 
-            return url.listBlobsFlatSegment(nextMarker, new ListBlobsOptions(null, null,
-                    1))
+            return url.listBlobsFlatSegment(nextMarker, new ListBlobsOptions().withMaxResults(10), null)
                     .flatMap(containersListBlobFlatSegmentResponse ->
                             listAllBlobs(url, containersListBlobFlatSegmentResponse));
         }
@@ -114,7 +114,7 @@ public class Quickstart {
 
     static void deleteBlob(BlockBlobURL blobURL) {
         // Delete the blob
-        blobURL.delete(null, null)
+        blobURL.delete(null, null, null)
         .subscribe(
             response -> System.out.println(">> Blob deleted: " + blobURL),
             error -> System.out.println(">> An error encountered during deleteBlob: " + error.getMessage()));
@@ -124,10 +124,11 @@ public class Quickstart {
         try {
             // Get the blob using the low-level download method in BlockBlobURL type
             // com.microsoft.rest.v2.util.FlowableUtil is a static class that contains helpers to work with Flowable
-            blobURL.download(new BlobRange(0, Long.MAX_VALUE), null, false)
+            // BlobRange is defined from 0 to 4MB
+            blobURL.download(new BlobRange().withOffset(0).withCount(4*1024*1024L), null, false, null)
                     .flatMapCompletable(response -> {
                         AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get(sourceFile.getPath()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-                        return FlowableUtil.writeFile(response.body(), channel);
+                        return FlowableUtil.writeFile(response.body(null), channel);
                     }).doOnComplete(()-> System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath()))
                     // To call it synchronously add .blockingAwait()
                     .subscribe();
@@ -162,7 +163,7 @@ public class Quickstart {
             containerURL = serviceURL.createContainerURL("quickstart");
 
             try {
-                ContainerCreateResponse response = containerURL.create(null, null).blockingGet();
+                ContainerCreateResponse response = containerURL.create(null, null, null).blockingGet();
                 System.out.println("Container Create Response was " + response.statusCode());
             } catch (RestException e){
                 if (e instanceof RestException && ((RestException)e).response().statusCode() != 409) {
@@ -205,7 +206,7 @@ public class Quickstart {
                         break;
                     case "E":
                         System.out.println("Cleaning up the sample and exiting!");
-                        containerURL.delete(null).blockingGet();
+                        containerURL.delete(null, null).blockingGet();
                         downloadedFile.delete();
                         System.exit(0);
                         break;
