@@ -120,22 +120,14 @@ public class Quickstart {
             error -> System.out.println(">> An error encountered during deleteBlob: " + error.getMessage()));
     }
 
-    static void getBlob(BlockBlobURL blobURL, File sourceFile) {
-        try {
-            // Get the blob using the low-level download method in BlockBlobURL type
-            // com.microsoft.rest.v2.util.FlowableUtil is a static class that contains helpers to work with Flowable
-            // BlobRange is defined from 0 to 4MB
-            blobURL.download(new BlobRange().withOffset(0).withCount(4*1024*1024L), null, false, null)
-                    .flatMapCompletable(response -> {
-                        AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get(sourceFile.getPath()), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-                        return FlowableUtil.writeFile(response.body(null), channel);
-                    }).doOnComplete(()-> System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath()))
-                    // To call it synchronously add .blockingAwait()
-                    .subscribe();
-        } catch (Exception ex){
+    static void getBlob(BlockBlobURL blobURL, File sourceFile) throws IOException {
+        AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(sourceFile.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 
-            System.out.println(ex.toString());
-        }
+        TransferManager.downloadBlobToFile(fileChannel, blobURL, null, null)
+        .subscribe(response-> {
+            System.out.println("Completed download request.");
+            System.out.println("The blob was downloaded to " + sourceFile.getAbsolutePath());
+        });
     }
 
     public static void main(String[] args) throws java.lang.Exception{
