@@ -53,7 +53,7 @@ public class Quickstart {
 
             // Uploading a file to the blobURL using the high-level methods available in TransferManager class
             // Alternatively call the PutBlob/PutBlock low-level methods from BlockBlobURL type
-            TransferManager.uploadFileToBlockBlob(fileChannel, blob, 8*1024*1024, null)
+            TransferManager.uploadFileToBlockBlob(fileChannel, blob, 8*1024*1024, null, null)
             .subscribe(response-> {
                 System.out.println("Completed upload request.");
                 System.out.println(response.response().statusCode());
