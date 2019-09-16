@@ -14,23 +14,23 @@ This QuickStart shows how to do some basic operations of Storage Blobs.
 # Folders introduction
 Two folders are referred to different version of Azure SDK.
 * storage-blobs-java-v10-quickstart-v3 referenced to following package in the Maven pom.xml file:
-  * <dependency>
-  *   <groupId>com.microsoft.azure</groupId>
-  *   <artifactId>azure-storage-blob</artifactId>
-  *   <version>11.0.0</version>
-  * </dependency>
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
 * storage-blobs-java-v10-quickstart-v4 referenced to following packages in the Maven pom.xml file:
-  * <dependency>
-  *   <groupId>com.azure</groupId>
-  *   <artifactId>azure-storage-blob</artifactId>
-  *   <version>12.0.0-preview.3</version>
-  * </dependency>
-  *  
-  * <dependency>
-  *   <groupId>com.microsoft.azure</groupId>
-  *   <artifactId>azure</artifactId>
-  *   <version>1.22.0</version>
-  * </dependency>
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>12.0.0-preview.3</version>
+   </dependency>
+    
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure</artifactId>
+     <version>1.22.0</version>
+   </dependency>
   
 ## Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java/tree/vNext)
