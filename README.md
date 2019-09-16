@@ -1,50 +1,40 @@
+
 # Quick Start with Azure Storage SDK V10 for Java
-## How to run this project
 
-### Prerequisites
+This QuickStart shows how to do some basic operations of Storage Blobs. 
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+> * Create a storage account using the Azure portal.
+> * Create a container.
+> * Upload a file to block blob.
+> * List blobs.
+> * Download a blob to file.
+> * Delete a blob.
+> * Delete the container.
 
-### Create a storage account using the Azure portal
-
-First, create a new general-purpose storage account to use for this tutorial. 
-
-*  Go to the [Azure portal](https://portal.azure.com) and log in using your Azure account. 
-*  On the Hub menu, select **New** > **Storage** > **Storage account - blob, file, table, queue**. 
-*  Enter a name for your storage account. The name must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. It must also be unique.
-*  Set `Deployment model` to **Resource manager**.
-*  Set `Account kind` to **General purpose**.
-*  Set `Performance` to **Standard**. 
-*  Set `Replication` to **Locally Redundant storage (LRS)**.
-*  Set `Storage service encryption` to **Disabled**.
-*  Set `Secure transfer required` to **Disabled**.
-*  Select your subscription. 
-*  For `resource group`, create a new one and give it a unique name. 
-*  Select the `Location` to use for your storage account.
-*  Check **Pin to dashboard** and click **Create** to create your storage account. 
-
-After your storage account is created, it is pinned to the dashboard. Click on it to open it. Under SETTINGS, click **Access keys**. Select a key and copy the **key1** to the clipboard, then paste it into Notepad for later use.
-
-### Set credentials in environment variables 
-
-Linux
+# Folders introduction
+Two folders are referred to different version of Azure SDK.
+* storage-blobs-java-v10-quickstart-v3 referenced to following package in the Maven pom.xml file:
+```xml
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
 ```
-export AZURE_STORAGE_ACCOUNT="<youraccountname>"
-export AZURE_STORAGE_ACCESS_KEY="<youraccountkey>"
+* storage-blobs-java-v10-quickstart-v4 referenced to following packages in the Maven pom.xml file:
+```xml
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>12.0.0-preview.3</version>
+   </dependency>
+    
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure</artifactId>
+     <version>1.22.0</version>
+   </dependency>
 ```
-
-Windows
-```
-setx AZURE_STORAGE_ACCOUNT "<youracountname>"
-setx AZURE_STORAGE_ACCESS_KEY "<youraccountkey>"
-```
-
-At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end. 
-
-```
-mvn compile exec:java
-```
-
 ## Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java/tree/vNext)
 * [API Reference](https://docs.microsoft.com/en-us/java/api/storage/client?view=azure-java-preview)
@@ -62,4 +52,3 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
