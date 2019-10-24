@@ -1,4 +1,4 @@
-# Quick Start with Azure Storage SDK V10 for Java
+# Quick Start with Azure Storage Blobs SDK V10 for Java
 ## How to run this project
 
 ### Prerequisites

@@ -1,5 +1,5 @@
 
-# Quick Start with Azure Storage SDK V10 for Java
+# Quick Start with Azure Storage Blobs SDK V10 for Java
 
 This QuickStart shows how to do some basic operations of Storage Blobs. 
 
@@ -11,9 +11,9 @@ This QuickStart shows how to do some basic operations of Storage Blobs.
 > * Delete a blob.
 > * Delete the container.
 
-# Folders introduction
+# Azure SDK versions
 Two folders are referred to different version of Azure SDK.
-* storage-blobs-java-v10-quickstart-v3 referenced to following package in the Maven pom.xml file:
+* For the previous stable Azure SDK version[storage-blobs-java-v10-quickstart-v3](https://github.com/tzhanl/storage-blobs-java-v10-quickstart/tree/blobv4/storage-blobs-java-v10-quickstart-v3) please add the following dependencies to the Maven  pom.xml file :
 ```xml
    <dependency>
      <groupId>com.microsoft.azure</groupId>
@@ -21,7 +21,7 @@ Two folders are referred to different version of Azure SDK.
      <version>11.0.0</version>
    </dependency>
 ```
-* storage-blobs-java-v10-quickstart-v4 referenced to following packages in the Maven pom.xml file:
+* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4](https://github.com/tzhanl/storage-blobs-java-v10-quickstart/tree/blobv4/storage-blobs-java-v10-quickstart-v4) please add the following dependency to the Maven pom.xml file:
 ```xml
    <dependency>
      <groupId>com.azure</groupId>
