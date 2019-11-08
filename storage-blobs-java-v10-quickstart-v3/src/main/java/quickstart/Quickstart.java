@@ -41,7 +41,7 @@ public class Quickstart {
         sampleFile = File.createTempFile("sampleFile", ".txt");
         System.out.println(">> Creating a sample file at: " + sampleFile.toString());
         Writer output = new BufferedWriter(new FileWriter(sampleFile));
-        output.write("Hello Azure!");
+        output.write("Hello Azure.");
         output.close();
 
         return sampleFile;
@@ -197,7 +197,7 @@ public class Quickstart {
                         System.out.println();
                         break;
                     case "E":
-                        System.out.println("Cleaning up the sample and exiting!");
+                        System.out.println("Cleaning up the sample and exiting.");
                         containerURL.delete(null, null).blockingGet();
                         downloadedFile.delete();
                         System.exit(0);
