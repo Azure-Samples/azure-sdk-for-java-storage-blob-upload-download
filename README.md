@@ -56,6 +56,30 @@ mvn compile exec:java
 > * Delete a blob.
 > * Delete the container.
 
+# Azure SDK versions
+* For the previous stable Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file :
+```xml
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
+```
+* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4] please add the following dependency to the Maven pom.xml file:
+```xml
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-common</artifactId>
+     <version>12.0.0</version>
+   </dependency>
+
+    <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>12.0.0</version>
+   </dependency>
+```
+
 ## Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java)
 * [API Reference](https://docs.microsoft.com/en-us/java/api/overview/azure/storage/blob?view=azure-java-preview)
