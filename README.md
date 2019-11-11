@@ -2,25 +2,23 @@
 
 ### Prerequisites
 
-If you don't have an Azure subscription, create a [Storage Account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ### Create a Storage Account using the Azure portal
 
 Step 1 : Create a new general-purpose storage account to use for this tutorial. 
 
-*  Go to the [Azure portal](https://portal.azure.com) and log in using your Azure account. 
-*  Select **New** > **Storage** > **Storage account - blob, file, table, queue**. 
+*  Go to the [Azure Portal](https://portal.azure.com) and log in using your Azure account. 
+*  Select **New** > **Storage** > **Storage account**. 
+*  Select your Subscription. 
+*  For `Resource group`, create a new one and give it a unique name. 
 *  Enter a name for your storage account. The name must be between 3 and 24 characters in length and may contain numbers and lowercase letters only. It must also be unique.
-*  Set `Deployment model` to **Resource manager**.
-*  Set `Account kind` to **General purpose**.
-*  Set `Performance` to **Standard**. 
-*  Set `Replication` to **Locally Redundant Storage (LRS)**.
-*  Set `Storage service encryption` to **Disabled**.
-*  Set `Secure transfer required` to **Disabled**.
-*  Select your subscription. 
-*  For `resource group`, create a new one and give it a unique name. 
 *  Select the `Location` to use for your Storage Account.
-*  Check **Pin to dashboard** and click **Create** to create your Storage Account. 
+*  Set `Account kind` to **StorageV2(general purpose v2)**.
+*  Set `Performance` to **Standard**. 
+*  Set `Replication` to **Locally-redundant storage (LRS)**.
+*  Set `Secure transfer required` to **Disabled**.
+*  Check **Review + create** and click **Create** to create your Storage Account. 
 
 Step 2 : Copy and save keys.
 
@@ -57,14 +55,6 @@ mvn compile exec:java
 > * Delete the container.
 
 # Azure SDK versions
-* For the previous stable Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file :
-```xml
-   <dependency>
-     <groupId>com.microsoft.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>11.0.0</version>
-   </dependency>
-```
 * To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4] please add the following dependency to the Maven pom.xml file:
 ```xml
    <dependency>
@@ -79,6 +69,15 @@ mvn compile exec:java
      <version>12.0.0</version>
    </dependency>
 ```
+* For the previous stable Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file :
+```xml
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
+```
+
 
 ## Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java)
