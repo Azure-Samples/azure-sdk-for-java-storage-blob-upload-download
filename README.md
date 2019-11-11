@@ -2,7 +2,7 @@
 
 ### Prerequisites
 
-If you don't have an Azure subscription, create a [Storage Account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ### Create a Storage Account using the Azure portal
 
@@ -57,14 +57,6 @@ mvn compile exec:java
 > * Delete the container.
 
 # Azure SDK versions
-* For the previous stable Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file :
-```xml
-   <dependency>
-     <groupId>com.microsoft.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>11.0.0</version>
-   </dependency>
-```
 * To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4] please add the following dependency to the Maven pom.xml file:
 ```xml
    <dependency>
@@ -79,6 +71,15 @@ mvn compile exec:java
      <version>12.0.0</version>
    </dependency>
 ```
+* For the previous stable Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file :
+```xml
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
+```
+
 
 ## Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java)
