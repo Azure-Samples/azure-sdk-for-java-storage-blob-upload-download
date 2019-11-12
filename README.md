@@ -22,7 +22,7 @@ Step 1 : Create a new general-purpose storage account to use for this tutorial.
 
 Step 2 : Copy and save keys.
 
- * After your storage account is created, it is pinned to the dashboard. Click on it to open it. Under SETTINGS, click **Access keys**. Select a key and copy the **key1** to the clipboard, then paste it into text editor for later use.
+ * After your Storage Account is created. Click on it to open it. Select **Settings** > **Access keys** > **key1/key2**, Select a key and copy the **Key** to the clipboard, then paste it into text editor for later use.
 
 ### Set credentials in environment variables 
 
