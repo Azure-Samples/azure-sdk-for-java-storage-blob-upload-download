@@ -1,5 +1,31 @@
 # Quickstart with Azure Storage Blobs SDK V10 for Java
 
+### SDK Versions
+You will find the following folders: storage-blobs-java-v10-quickstart-v3, which references the version 11.0.0 of the SDK and storage-blobs-java-v10-quickstart-v4, which uses the version 12.0.0 of the SDK.
+
+* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4](./storage-blobs-java-v10-quickstart-v4) please add the following dependency to the Maven pom.xml file:
+```xml
+   <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-common</artifactId>
+     <version>12.0.0</version>
+   </dependency>
+
+    <dependency>
+     <groupId>com.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>12.0.0</version>
+   </dependency>
+```
+* For the previous Azure SDK version [storage-blobs-java-v10-quickstart-v3](./storage-blobs-java-v10-quickstart-v3) please add the following dependency to the Maven pom please add the following dependencies to the Maven pom.xml file:
+```xml
+   <dependency>
+     <groupId>com.microsoft.azure</groupId>
+     <artifactId>azure-storage-blob</artifactId>
+     <version>11.0.0</version>
+   </dependency>
+```
+
 ### Prerequisites
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
@@ -53,32 +79,6 @@ mvn compile exec:java
 > * Download a blob to file.
 > * Delete a blob.
 > * Delete the container.
-
-### SDK Versions
-You will find the following folders: storage-blobs-java-v10-quickstart-v3, which references the version 11.0.0 of the SDK and storage-blobs-java-v10-quickstart-v4, which uses the version 12.0.0 of the SDK.
-
-* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4](./storage-blobs-java-v10-quickstart-v4) please add the following dependency to the Maven pom.xml file:
-```xml
-   <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-common</artifactId>
-     <version>12.0.0</version>
-   </dependency>
-
-    <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>12.0.0</version>
-   </dependency>
-```
-* For the previous Azure SDK version [storage-blobs-java-v10-quickstart-v3](./storage-blobs-java-v10-quickstart-v3) please add the following dependency to the Maven pom please add the following dependencies to the Maven pom.xml file:
-```xml
-   <dependency>
-     <groupId>com.microsoft.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>11.0.0</version>
-   </dependency>
-```
 
 ### Resources
 * [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java)
