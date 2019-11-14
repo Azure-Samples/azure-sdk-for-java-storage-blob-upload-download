@@ -56,7 +56,7 @@ mvn compile exec:java
 
 ### SDK Versions
 You will find the following folders: storage-blobs-dotnet-quickstart-v3, which references the version 11.0.0 of the SDK and storage-blobs-dotnet-quickstart-v4, which uses the version 12.0.0 of the SDK.
-* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4] please add the following dependency to the Maven pom.xml file:
+* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4](./storage-blobs-java-v10-quickstart-v4) please add the following dependency to the Maven pom.xml file:
 ```xml
    <dependency>
      <groupId>com.azure</groupId>
@@ -70,7 +70,7 @@ You will find the following folders: storage-blobs-dotnet-quickstart-v3, which r
      <version>12.0.0</version>
    </dependency>
 ```
-* For the previous Azure SDK version [storage-blobs-java-v10-quickstart-v3] please add the following dependencies to the Maven pom.xml file:
+* For the previous Azure SDK version [storage-blobs-java-v10-quickstart-v3](./storage-blobs-java-v10-quickstart-v3) please add the following dependency to the Maven pom please add the following dependencies to the Maven pom.xml file:
 ```xml
    <dependency>
      <groupId>com.microsoft.azure</groupId>
