@@ -55,6 +55,8 @@ mvn compile exec:java
 > * Delete the container.
 
 ### SDK Versions
+You will find the following folders: storage-blobs-java-v10-quickstart-v3, which references the version 11.0.0 of the SDK and storage-blobs-java-v10-quickstart-v4, which uses the version 12.0.0 of the SDK.
+
 * To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v4](./storage-blobs-java-v10-quickstart-v4) please add the following dependency to the Maven pom.xml file:
 ```xml
    <dependency>
