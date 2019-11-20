@@ -1,5 +1,3 @@
-# Quickstart with Azure Storage Blobs SDK V10 for Java
-
 ---
 page_type: sample
 languages: Java
