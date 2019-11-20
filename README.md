@@ -4,7 +4,7 @@ languages: Java
 products:
 - Azure
 - Storage
-description: "A simple sample project to help you get started using Azure Storage with Java as the development language."
+description: "A simple sample project to help you get started using Azure Storage Blob with Java as the development language."
 ---
 
 ### SDK Versions
