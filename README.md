@@ -1,30 +1,18 @@
 # Quickstart with Azure Storage Blobs SDK V10 for Java
 
+---
+page_type: sample
+languages: Java
+products:
+- Azure
+- Storage
+description: "A simple sample project to help you get started using Azure Storage with Java as the development language."
+---
+
 ### SDK Versions
-You will find the following folders: storage-blobs-java-v10-quickstart-v11, which references the version 11.0.0 of the SDK and storage-blobs-java-v10-quickstart-v12, which uses the version 12.0.0 of the SDK.
-
-* To use the latest Azure SDK version [storage-blobs-java-v10-quickstart-v12](./storage-blobs-java-v10-quickstart-v12) please add the following dependency to the Maven pom.xml file:
-```xml
-   <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-common</artifactId>
-     <version>12.0.0</version>
-   </dependency>
-
-    <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>12.0.0</version>
-   </dependency>
-```
-* For the previous Azure SDK version [storage-blobs-java-v10-quickstart-v11](./storage-blobs-java-v10-quickstart-v11) please add the following dependency to the Maven pom please add the following dependencies to the Maven pom.xml file:
-```xml
-   <dependency>
-     <groupId>com.microsoft.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>11.0.0</version>
-   </dependency>
-```
+In this sample, you will find the following folders:
+* **[storage-blobs-java-v10-quickstart-v11](./storage-blobs-java-v10-quickstart-v11)** - references Storage Blobs SDK v11.0.0
+* **[storage-blobs-java-v10-quickstart-v12](./storage-blobs-java-v10-quickstart-v12)** - references Storage Blobs SDK v12.0.0
 
 ### Prerequisites
 
