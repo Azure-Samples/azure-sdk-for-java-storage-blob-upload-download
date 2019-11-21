@@ -1,10 +1,10 @@
 ---
 page_type: sample
-languages: Java
+languages: java
 products:
-- Azure
-- Storage
-description: "A simple sample project to help you get started using Azure Storage Blob with Java as the development language."
+- azure
+- azure-storage
+description: "A simple sample project to help you get started using Azure Storage with Java as the development language."
 ---
 
 ### SDK Versions
@@ -40,14 +40,14 @@ Step 2 : Copy and save keys.
 
 Linux
 ```
-export AZURE_STORAGE_ACCOUNT="<youraccountname>"
-export AZURE_STORAGE_ACCESS_KEY="<youraccountkey>"
+export AZURE_STORAGE_ACCOUNT="<YourAccountName>"
+export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
 
 Windows
 ```
-setx AZURE_STORAGE_ACCOUNT "<youracountname>"
-setx AZURE_STORAGE_ACCESS_KEY "<youraccountkey>"
+setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
+setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
 
 At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end.
