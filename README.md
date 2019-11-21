@@ -1,10 +1,10 @@
 ---
 page_type: sample
-languages: Java
+languages: java
 products:
-- Azure
-- Storage
-description: "A simple sample project to help you get started using Azure Storage Blob with Java as the development language."
+- azure
+- azure-storage
+description: "A simple sample project to help you get started using Azure Storage with Java as the development language."
 ---
 
 ### SDK Versions
