@@ -10,12 +10,9 @@ import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.AsynchronousFileChannel;
-import java.nio.channels.FileChannel;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.security.InvalidKeyException;
 
-import com.microsoft.azure.storage.blob.BlobRange;
 import com.microsoft.azure.storage.blob.BlockBlobURL;
 import com.microsoft.azure.storage.blob.ContainerURL;
 import com.microsoft.azure.storage.blob.ListBlobsOptions;
@@ -28,10 +25,8 @@ import com.microsoft.azure.storage.blob.models.BlobItem;
 import com.microsoft.azure.storage.blob.models.ContainerCreateResponse;
 import com.microsoft.azure.storage.blob.models.ContainerListBlobFlatSegmentResponse;
 import com.microsoft.rest.v2.RestException;
-import com.microsoft.rest.v2.util.FlowableUtil;
 
 import io.reactivex.*;
-import io.reactivex.Flowable;
 
 public class Quickstart {
     static File createTempFile() throws IOException {
@@ -41,7 +36,7 @@ public class Quickstart {
         sampleFile = File.createTempFile("sampleFile", ".txt");
         System.out.println(">> Creating a sample file at: " + sampleFile.toString());
         Writer output = new BufferedWriter(new FileWriter(sampleFile));
-        output.write("Hello Azure!");
+        output.write("Hello Azure.");
         output.close();
 
         return sampleFile;
@@ -197,7 +192,7 @@ public class Quickstart {
                         System.out.println();
                         break;
                     case "E":
-                        System.out.println("Cleaning up the sample and exiting!");
+                        System.out.println("Cleaning up the sample and exiting.");
                         containerURL.delete(null, null).blockingGet();
                         downloadedFile.delete();
                         System.exit(0);
