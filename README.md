@@ -1,11 +1,15 @@
 ---
 page_type: sample
-languages: java
+languages:
+- java
 products:
 - azure
 - azure-storage
-description: "A simple sample project to help you get started using Azure Storage with Java as the development language."
+description: "A sample project to help you get started using Azure Storage with Java as the development language."
+urlFragment: azure-sdk-storage-sample
 ---
+
+# Get started using Azure Storage with Java
 
 ### SDK Versions
 In this sample, you will find the following folders:
