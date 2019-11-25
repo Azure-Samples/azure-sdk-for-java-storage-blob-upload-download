@@ -17,13 +17,13 @@ In this sample, you will find the following folders:
 * **[azure-sdk-for-java-storage-blob-upload-download-v12][azure-sdk-blob-v12-folder]** - references [Storage Blob SDK v12.0.0][SDK-v12]
 ### Prerequisites
 
-If you don't have an Azure subscription, create a [free account][free account] before you begin.
+If you don't have an Azure subscription, create a [free account] before you begin.
 
 ### Create a Storage Account using the Azure portal
 
 Step 1 : Create a new general-purpose storage account to use for this tutorial.
 
-*  Go to the [Azure Portal][Azure Portal] and log in using your Azure account.
+*  Go to the [Azure Portal] and log in using your Azure account.
 *  Select **New** > **Storage** > **Storage account**.
 *  Select your Subscription.
 *  For `Resource group`, create a new one and give it a unique name.
@@ -85,9 +85,9 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
 provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This project has adopted the [Microsoft Open Source Code of Conduct].
+For more information see the [Code of Conduct FAQ] or
+contact [opencode@microsoft.com] with any additional questions or comments.
 
 <!-- LINKS -->
 [azure-sdk-blob-v11-folder]: https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download/tree/master/azure-sdk-for-java-storage-blob-upload-download-v11
@@ -97,3 +97,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 [SDK-v11]: https://search.maven.org/artifact/com.microsoft.azure/azure-storage-blob/11.0.0/jar
 [SDK-v12]: https://search.maven.org/artifact/com.azure/azure-storage-blob/12.0.0/jar
 [API Reference]: http://azure.github.io/azure-sdk-for-java/
+[Microsoft Open Source Code of Conduct]: https://opensource.microsoft.com/codeofconduct/
+[Code of Conduct FAQ]: https://opensource.microsoft.com/codeofconduct/faq/
+[opencode@microsoft.com]: mailto:opencode@microsoft.com
