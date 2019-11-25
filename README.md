@@ -11,12 +11,12 @@ urlFragment: upload-download-blobs-java
 
 # How to upload and download blobs from Azure Blob Storage with Java
 
-### SDK Versions
+## SDK Versions
 In this sample, you will find the following folders:
 * **[azure-sdk-for-java-storage-blob-upload-download-v11][azure-sdk-blob-v11-folder]** - references [Storage Blob SDK v11.0.0][SDK-v11]
 * **[azure-sdk-for-java-storage-blob-upload-download-v12][azure-sdk-blob-v12-folder]** - references [Storage Blob SDK v12.0.0][SDK-v12]
-### Prerequisites
 
+## Prerequisites
 If you don't have an Azure subscription, create a [free account] before you begin.
 
 ### Create a Storage Account using the Azure portal
@@ -39,7 +39,7 @@ Step 2 : Copy and save keys.
 
  * After your Storage Account is created. Click on it to open it. Select **Settings** > **Access keys** > **key1/key2**, Select a key and copy the **Key** to the clipboard, then paste it into text editor for later use.
 
-### Set credentials in environment variables 
+## Set credentials in environment variables 
 
 Linux
 ```
@@ -59,7 +59,7 @@ At this point, you can run this application using maven: `mvn compile exec:java`
 mvn compile exec:java
 ```
 
-### This Quickstart shows how to do the following operations of Storage Blobs. 
+## This Quickstart shows how to do the following operations of Storage Blobs. 
 
 > * Create a Storage Account using the Azure portal.
 > * Create a container.
@@ -69,13 +69,13 @@ mvn compile exec:java
 > * Delete a blob.
 > * Delete the container.
 
-### Resources
+## Resources
 
 * [Azure Storage Blob SDK v11 for Java][SDK-v11]
 * [Azure Storage Blob SDK v12 for Java][SDK-v12]
 * [API Reference][API Reference]
 
-### Contributing
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
