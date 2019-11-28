@@ -5,7 +5,7 @@ languages:
 products:
 - azure
 - azure-storage
-description: "This sample shows you how to upload and download blobs from Azure Blob Storage with Java."
+description: "How to upload and download blobs from Azure Blob Storage with Java."
 urlFragment: upload-download-blobs-java
 ---
 
@@ -13,8 +13,8 @@ urlFragment: upload-download-blobs-java
 
 ## SDK Versions
 In this sample, you will find the following folders:
-* **[azure-sdk-for-java-storage-blob-upload-download-v11][azure-sdk-blob-v11-folder]** - references [Storage Blob SDK v11.0.0][SDK-v11]
-* **[azure-sdk-for-java-storage-blob-upload-download-v12][azure-sdk-blob-v12-folder]** - references [Storage Blob SDK v12.0.0][SDK-v12]
+* **[azure-sdk-for-java-storage-blob-upload-download-v11][azure-sdk-blob-v11-folder]** - references [Storage Blob SDK v11][SDK-v11]
+* **[azure-sdk-for-java-storage-blob-upload-download-v12][azure-sdk-blob-v12-folder]** - references [Storage Blob SDK v12][SDK-v12]
 
 ## Prerequisites
 If you don't have an Azure subscription, create a [free account] before you begin.
@@ -42,24 +42,24 @@ Step 2 : Copy and save keys.
 ## Set credentials in environment variables 
 
 Linux
-```
+``` bash
 export AZURE_STORAGE_ACCOUNT="<YourAccountName>"
 export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
 
 Windows
-```
+``` cmd
 setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
 setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
 
 At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end.
 
-```
+``` cmd
 mvn compile exec:java
 ```
 
-## This Quickstart shows how to do the following operations of Storage Blobs. 
+## This sample shows how to do the following operations of Storage Blobs. 
 
 > * Create a Storage Account using the Azure portal.
 > * Create a container.
