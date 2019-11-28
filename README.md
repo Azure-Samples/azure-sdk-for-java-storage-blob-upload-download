@@ -42,7 +42,7 @@ Step 2 : Copy and save keys.
 ## Set credentials in environment variables 
 
 Linux
-```
+``` bash
 export AZURE_STORAGE_ACCOUNT="<YourAccountName>"
 export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
@@ -59,7 +59,7 @@ At this point, you can run this application using maven: `mvn compile exec:java`
 mvn compile exec:java
 ```
 
-## This Quickstart shows how to do the following operations of Storage Blobs. 
+## This sample shows how to do the following operations of Storage Blobs. 
 
 > * Create a Storage Account using the Azure portal.
 > * Create a container.
