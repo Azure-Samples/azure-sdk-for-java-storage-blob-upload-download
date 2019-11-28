@@ -59,7 +59,7 @@ At this point, you can run this application using maven: `mvn compile exec:java`
 mvn compile exec:java
 ```
 
-## This sample shows how to do the following operations of Storage Blobs. 
+## This sample shows how to do the following operations of Storage Blobs
 
 > * Create a Storage Account using the Azure portal.
 > * Create a container.
