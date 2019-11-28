@@ -48,14 +48,14 @@ export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
 
 Windows
-```
+``` cmd
 setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
 setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
 
 At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end.
 
-```
+``` cmd
 mvn compile exec:java
 ```
 
