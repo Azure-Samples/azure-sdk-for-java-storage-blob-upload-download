@@ -5,7 +5,7 @@ languages:
 products:
 - azure
 - azure-storage
-description: "This sample shows you how to upload and download blobs from Azure Blob Storage with Java."
+description: "How to upload and download blobs from Azure Blob Storage with Java."
 urlFragment: upload-download-blobs-java
 ---
 
