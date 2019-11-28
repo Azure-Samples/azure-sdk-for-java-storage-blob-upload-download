@@ -48,7 +48,7 @@ export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
 
 Windows
-```
+``` cmd
 setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
 setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
