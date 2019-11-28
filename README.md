@@ -13,14 +13,13 @@ urlFragment: upload-download-blobs-java
 
 ## SDK Versions
 In this sample, you will find the following folders:
-* **[azure-sdk-for-java-storage-blob-upload-download-v11][azure-sdk-blob-v11-folder]** - references [Storage Blob SDK v11][SDK-v11]
-* **[azure-sdk-for-java-storage-blob-upload-download-v12][azure-sdk-blob-v12-folder]** - references [Storage Blob SDK v12][SDK-v12]
+* **azure-sdk-for-java-storage-blob-upload-download-v11** - references Storage Blob SDK v11
+* **azure-sdk-for-java-storage-blob-upload-download-v12** - references Storage Blob SDK v12
 
 ## Prerequisites
 If you don't have an Azure subscription, create a [free account] before you begin.
 
 ### Create a Storage Account using the Azure portal
-
 Step 1 : Create a new general-purpose storage account to use for this tutorial.
 
 *  Go to the [Azure Portal] and log in using your Azure account.
@@ -40,7 +39,6 @@ Step 2 : Copy and save keys.
  * After your Storage Account is created. Click on it to open it. Select **Settings** > **Access keys** > **key1/key2**, Select a key and copy the **Key** to the clipboard, then paste it into text editor for later use.
 
 ### Set credentials in environment variables 
-
 Linux
 ``` bash
 export AZURE_STORAGE_ACCOUNT="<YourAccountName>"
@@ -60,23 +58,20 @@ mvn compile exec:java
 ```
 
 ## This sample shows how to do the following operations of Storage Blobs
-
-> * Create a Storage Account using the Azure portal.
-> * Create a container.
-> * Upload a file to block blob.
-> * List blobs.
-> * Download a blob to file.
-> * Delete a blob.
-> * Delete the container.
+> * Create a Storage Account using the Azure portal
+> * Create a container
+> * Upload a file to block blob
+> * List blobs
+> * Download a blob to file
+> * Delete a blob
+> * Delete the container
 
 ## Resources
-
 * [Azure Storage Blob SDK v11 for Java][SDK-v11]
 * [Azure Storage Blob SDK v12 for Java][SDK-v12]
 * [API Reference][API Reference]
 
 ## Contributing
-
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
@@ -90,8 +85,6 @@ For more information see the [Code of Conduct FAQ] or
 contact [opencode@microsoft.com] with any additional questions or comments.
 
 <!-- LINKS -->
-[azure-sdk-blob-v11-folder]: https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download/tree/master/azure-sdk-for-java-storage-blob-upload-download-v11
-[azure-sdk-blob-v12-folder]: https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download/tree/master/azure-sdk-for-java-storage-blob-upload-download-v12
 [free account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [Azure Portal]: https://portal.azure.com
 [SDK-v11]: https://search.maven.org/artifact/com.microsoft.azure/azure-storage-blob/11.0.0/jar
