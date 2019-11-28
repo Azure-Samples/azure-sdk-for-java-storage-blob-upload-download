@@ -39,7 +39,7 @@ Step 2 : Copy and save keys.
 
  * After your Storage Account is created. Click on it to open it. Select **Settings** > **Access keys** > **key1/key2**, Select a key and copy the **Key** to the clipboard, then paste it into text editor for later use.
 
-## Set credentials in environment variables 
+### Set credentials in environment variables 
 
 Linux
 ``` bash
