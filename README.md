@@ -13,8 +13,8 @@ urlFragment: upload-download-blobs-java
 
 ## SDK Versions
 In this sample, you will find the following folders:
-* **azure-sdk-for-java-storage-blob-upload-download-v11** - references Storage Blob SDK v11
-* **azure-sdk-for-java-storage-blob-upload-download-v12** - references Storage Blob SDK v12
+* **v11** - references Storage Blob SDK v11
+* **v12** - references Storage Blob SDK v12
 
 ## Prerequisites
 If you don't have an Azure subscription, create a [free account] before you begin.
