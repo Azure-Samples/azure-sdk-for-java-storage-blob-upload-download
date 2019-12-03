@@ -52,7 +52,23 @@ setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
 setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
 
-At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end.
+## Run the application
+First, clone the repository on your machine:
+
+``` bash
+git clone https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download.git
+```
+
+Then, switch to the appropriate folder:
+``` cmd
+cd v11
+```
+or
+``` cmd
+cd v12
+```
+
+Finally, run the application with the `mvn compile exec:java` command.
 
 ``` cmd
 mvn compile exec:java
