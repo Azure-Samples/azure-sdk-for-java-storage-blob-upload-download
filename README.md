@@ -1,17 +1,17 @@
 ---
 page_type: sample
-languages:
+languages: 
 - java
 products:
 - azure
 - azure-storage
-description: "A sample project to help you get started using Azure Storage with Java as the development language."
-urlFragment: azure-sdk-storage-sample
+description: "How to upload and download blobs from Azure Blob Storage with Java."
+urlFragment: upload-download-blobs-java
 ---
 
-# Get started using Azure Storage with Java
+# How to upload and download blobs from Azure Blob Storage with Java
 
-### SDK Versions
+## SDK Versions
 In this sample, you will find the following folders:
 * **v11** - references Storage Blob SDK v11
 * **v12** - references Storage Blob SDK v12
