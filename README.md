@@ -5,26 +5,24 @@ languages:
 products:
 - azure
 - azure-storage
-description: "A sample project to help you get started using Azure Storage with Java as the development language."
-urlFragment: azure-sdk-storage-sample
+description: "How to upload and download blobs from Azure Blob Storage with Java."
+urlFragment: upload-download-blobs-java
 ---
 
-# Get started using Azure Storage with Java
+# How to upload and download blobs from Azure Blob Storage with Java
 
-### SDK Versions
+## SDK Versions
 In this sample, you will find the following folders:
-* **[storage-blobs-java-v10-quickstart-v11](./storage-blobs-java-v10-quickstart-v11)** - references Storage Blobs SDK v11.0.0
-* **[storage-blobs-java-v10-quickstart-v12](./storage-blobs-java-v10-quickstart-v12)** - references Storage Blobs SDK v12.0.0
+* **v11** - references Storage Blob SDK v11
+* **v12** - references Storage Blob SDK v12
 
-### Prerequisites
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+## Prerequisites
+If you don't have an Azure subscription, create a [free account] before you begin.
 
 ### Create a Storage Account using the Azure portal
-
 Step 1 : Create a new general-purpose storage account to use for this tutorial.
 
-*  Go to the [Azure Portal](https://portal.azure.com) and log in using your Azure account.
+*  Go to the [Azure Portal] and log in using your Azure account.
 *  Select **New** > **Storage** > **Storage account**.
 *  Select your Subscription.
 *  For `Resource group`, create a new one and give it a unique name.
@@ -43,39 +41,54 @@ Step 2 : Copy and save keys.
 ### Set credentials in environment variables 
 
 Linux
-```
+``` bash
 export AZURE_STORAGE_ACCOUNT="<YourAccountName>"
 export AZURE_STORAGE_ACCESS_KEY="<YourAccountKey>"
 ```
 
 Windows
-```
+``` cmd
 setx AZURE_STORAGE_ACCOUNT "<YourAccountName>"
 setx AZURE_STORAGE_ACCESS_KEY "<YourAccountKey>"
 ```
 
-At this point, you can run this application using maven: `mvn compile exec:java`. It creates its own file to upload and download, and then cleans up after itself by deleting everything at the end.
+## Run the application
+First, clone the repository on your machine:
 
+``` bash
+git clone https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download.git
 ```
+
+Then, switch to the appropriate folder:
+``` cmd
+cd v11
+```
+or
+``` cmd
+cd v12
+```
+
+Finally, run the application with the `mvn compile exec:java` command.
+
+``` cmd
 mvn compile exec:java
 ```
 
-### This Quickstart shows how to do the following operations of Storage Blobs. 
+## This sample shows how to do the following operations of Storage Blobs
+> * Create a Storage Account using the Azure portal
+> * Create a container
+> * Upload a file to block blob
+> * List blobs
+> * Download a blob to file
+> * Delete a blob
+> * Delete the container
 
-> * Create a Storage Account using the Azure portal.
-> * Create a container.
-> * Upload a file to block blob.
-> * List blobs.
-> * Download a blob to file.
-> * Delete a blob.
-> * Delete the container.
+## Resources
+* [Azure Storage Blob SDK v11 for Java][SDK-v11]
+* [Azure Storage Blob SDK v12 for Java][SDK-v12]
+* [API Reference][API Reference]
 
-### Resources
-* [Azure Storage SDK v10 for Java](https://github.com/azure/azure-storage-java)
-* [API Reference](https://docs.microsoft.com/en-us/java/api/overview/azure/storage/blob?view=azure-java-preview)
-
-### Contributing
-
+## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
@@ -84,6 +97,16 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
 provided by the bot. You will only need to do this once across all repos using our CLA.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This project has adopted the [Microsoft Open Source Code of Conduct].
+For more information see the [Code of Conduct FAQ] or
+contact [opencode@microsoft.com] with any additional questions or comments.
+
+<!-- LINKS -->
+[free account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
+[Azure Portal]: https://portal.azure.com
+[SDK-v11]: https://search.maven.org/artifact/com.microsoft.azure/azure-storage-blob/11.0.0/jar
+[SDK-v12]: https://search.maven.org/artifact/com.azure/azure-storage-blob/12.0.0/jar
+[API Reference]: http://azure.github.io/azure-sdk-for-java/
+[Microsoft Open Source Code of Conduct]: https://opensource.microsoft.com/codeofconduct/
+[Code of Conduct FAQ]: https://opensource.microsoft.com/codeofconduct/faq/
+[opencode@microsoft.com]: mailto:opencode@microsoft.com
