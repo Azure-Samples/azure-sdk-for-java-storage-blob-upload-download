@@ -28,7 +28,12 @@ import com.microsoft.rest.v2.RestException;
 
 import io.reactivex.*;
 
+/*
+* This file uses an outdated library.  Please see the readme to find the latest version.
+*/
 public class Quickstart {
+
+    //Deprecated Libraries
     static File createTempFile() throws IOException {
 
         // Here we are creating a temporary file to use for download and upload to Blob storage
@@ -42,6 +47,7 @@ public class Quickstart {
         return sampleFile;
     }
 
+    //Deprecated Libraries
     static void uploadFile(BlockBlobURL blob, File sourceFile) throws IOException {
 
             AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(sourceFile.toPath());
@@ -55,6 +61,7 @@ public class Quickstart {
             });
     }
 
+    //Deprecated Libraries
     static void listBlobs(ContainerURL containerURL) {
         // Each ContainerURL.listBlobsFlatSegment call return up to maxResults (maxResults=10 passed into ListBlobOptions below).
         // To list all Blobs, we are creating a helper static method called listAllBlobs,
@@ -70,6 +77,7 @@ public class Quickstart {
             });
     }
 
+    //Deprecated Libraries
     private static Single <ContainerListBlobFlatSegmentResponse> listAllBlobs(ContainerURL url, ContainerListBlobFlatSegmentResponse response) {
         // Process the blobs returned in this result segment (if the segment is empty, blobs() will be null.
         if (response.body().segment() != null) {
@@ -107,6 +115,7 @@ public class Quickstart {
         }
     }
 
+    //Deprecated Libraries
     static void deleteBlob(BlockBlobURL blobURL) {
         // Delete the blob
         blobURL.delete(null, null, null)
@@ -115,6 +124,7 @@ public class Quickstart {
             error -> System.out.println(">> An error encountered during deleteBlob: " + error.getMessage()));
     }
 
+    //Deprecated Libraries
     static void getBlob(BlockBlobURL blobURL, File sourceFile) throws IOException {
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(sourceFile.toPath(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 
@@ -125,6 +135,7 @@ public class Quickstart {
         });
     }
 
+    //Deprecated Libraries
     public static void main(String[] args) throws java.lang.Exception{
         ContainerURL containerURL;
 
