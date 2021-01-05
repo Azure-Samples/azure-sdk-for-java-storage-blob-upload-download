@@ -11,10 +11,24 @@ urlFragment: upload-download-blobs-java
 
 # How to upload and download blobs from Azure Blob Storage with Java
 
-## SDK Versions
-In this sample, you will find the following folders:
-* **v11** - references Storage Blob SDK v11
-* **v12** - references Storage Blob SDK v12
+## This sample shows how to do the following operations of Storage Blobs with Storage SDK
+* Create a container
+* Upload a blob
+* Enumerate blobs
+* Download a blob
+* Delete the blob
+* Delete the container
+
+## Use latest Storage Blob SDK
+The Storage Blob SDK package version in this repo is **11.x.x**. It's strongly recommended that you use the [latest] version of the Storage Blob SDK package, please refer to the following examples:
+
+*  [BasicExample.java] - Examples for common Storage Blob tasks:
+    * Create a container
+    * Upload a blob
+    * Download a blob
+    * Enumerate blobs
+    * Delete the blob
+    * Delete the container
 
 ## Prerequisites
 If you don't have an Azure subscription, create a [free account] before you begin.
@@ -59,33 +73,14 @@ First, clone the repository on your machine:
 git clone https://github.com/Azure-Samples/azure-sdk-for-java-storage-blob-upload-download.git
 ```
 
-Then, switch to the appropriate folder:
-``` cmd
-cd v11
-```
-or
-``` cmd
-cd v12
-```
-
 Finally, run the application with the `mvn compile exec:java` command.
 
 ``` cmd
 mvn compile exec:java
 ```
 
-## This sample shows how to do the following operations of Storage Blobs
-> * Create a Storage Account using the Azure portal
-> * Create a container
-> * Upload a file to block blob
-> * List blobs
-> * Download a blob to file
-> * Delete a blob
-> * Delete the container
-
 ## Resources
-* [Azure Storage Blob SDK v11 for Java][SDK-v11]
-* [Azure Storage Blob SDK v12 for Java][SDK-v12]
+* [Azure Storage Blob SDK for Java][SDK]
 * [API Reference][API Reference]
 
 ## Contributing
@@ -104,10 +99,11 @@ contact [opencode@microsoft.com] with any additional questions or comments.
 <!-- LINKS -->
 [free account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [Azure Portal]: https://portal.azure.com
-[SDK-v11]: https://search.maven.org/artifact/com.microsoft.azure/azure-storage-blob/11.0.0/jar
-[SDK-v12]: https://search.maven.org/artifact/com.azure/azure-storage-blob/12.0.0/jar
+[SDK]: https://search.maven.org/artifact/com.microsoft.azure/azure-storage-blob/11.0.0/jar
 [API Reference]: http://azure.github.io/azure-sdk-for-java/
 [Microsoft Open Source Code of Conduct]: https://opensource.microsoft.com/codeofconduct/
 [Code of Conduct FAQ]: https://opensource.microsoft.com/codeofconduct/faq/
 [opencode@microsoft.com]: mailto:opencode@microsoft.com
+[latest]: https://search.maven.org/artifact/com.azure/azure-storage-blob
+[BasicExample.java]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob/src/samples/java/com/azure/storage/blob/BasicExample.java
 
