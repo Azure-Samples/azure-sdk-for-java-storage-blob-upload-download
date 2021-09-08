@@ -16,8 +16,8 @@ urlFragment: upload-download-blobs-java
 * Upload a blob
 * Enumerate blobs
 * Download a blob
-* Delete the blob
-* Delete the container
+* Delete a blob
+* Delete a container
 
 ## Use latest Storage Blob SDK
 The Storage Blob SDK package version in this repo is **11.x.x**. It's strongly recommended that you use the [latest] version of the Storage Blob SDK package, please refer to the following examples:
