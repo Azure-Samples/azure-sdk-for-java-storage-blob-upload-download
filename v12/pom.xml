@@ -25,7 +25,7 @@
           <compilerArgument>-Xlint:unchecked</compilerArgument>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -34,7 +34,7 @@
           <mainClass>quickstart.Quickstart</mainClass>
         </configuration>
       </plugin>
-      
+
     </plugins>
   </build>
 
@@ -42,12 +42,12 @@
     <dependency>
      <groupId>com.azure</groupId>
      <artifactId>azure-storage-common</artifactId>
-     <version>12.0.0</version>
+     <version>12.13.0</version>
    </dependency>
     <dependency>
      <groupId>com.azure</groupId>
      <artifactId>azure-storage-blob</artifactId>
-     <version>12.0.0</version>
+     <version>12.14.0</version>
    </dependency>
   </dependencies>
 </project>
