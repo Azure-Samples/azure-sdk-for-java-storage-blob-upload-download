@@ -4,13 +4,6 @@
   <groupId>Azure-Storage-SDK-V10-Java</groupId>
   <artifactId>QuickStart</artifactId>
   <version>0.1</version>
-  <repositories>
-    <repository>
-      <id>commicrosoftazure-2334</id>
-      <name>commicrosoftazure-2334</name>
-      <url>https://oss.sonatype.org/content/repositories/commicrosoftazure-2334</url>
-    </repository>
-  </repositories>
 
   <build>
     <plugins>
