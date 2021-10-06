@@ -1,15 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>Azure-Storage-SDK-V10-Java</groupId>
   <artifactId>QuickStart</artifactId>
   <version>0.1</version>
-  <repositories>
-    <repository>
-      <id>commicrosoftazure-2334</id>
-      <name>commicrosoftazure-2334</name>
-      <url>https://oss.sonatype.org/content/repositories/commicrosoftazure-2334</url>
-    </repository>
-  </repositories>
 
   <build>
     <plugins>
@@ -25,7 +19,7 @@
           <compilerArgument>-Xlint:unchecked</compilerArgument>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -34,20 +28,20 @@
           <mainClass>quickstart.Quickstart</mainClass>
         </configuration>
       </plugin>
-      
+
     </plugins>
   </build>
 
   <dependencies>
     <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-common</artifactId>
-     <version>12.0.0</version>
-   </dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-storage-common</artifactId>
+      <version>12.13.0</version>
+    </dependency>
     <dependency>
-     <groupId>com.azure</groupId>
-     <artifactId>azure-storage-blob</artifactId>
-     <version>12.0.0</version>
-   </dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-storage-blob</artifactId>
+      <version>12.14.0</version>
+    </dependency>
   </dependencies>
 </project>
